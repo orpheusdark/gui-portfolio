@@ -43,6 +43,8 @@
 
 	function openWallpapersApp() {
 		apps.open.wallpapers = true;
+		apps.minimized.wallpapers = false;
+		apps.restoring.wallpapers = false;
 		apps.active = 'wallpapers';
 	}
 

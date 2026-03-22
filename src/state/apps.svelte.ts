@@ -60,4 +60,36 @@ export const apps = $state({
 
 		vercel: false,
 	} as Record<AppID, boolean>,
+
+	minimized: {
+		wallpapers: false,
+		finder: false,
+		vscode: false,
+		calculator: false,
+		// safari: false,
+		appstore: false,
+		calendar: false,
+		// 'system-preferences': false,
+
+		'orpheus-twitter': false,
+		'view-source': false,
+
+		vercel: false,
+	} as Record<AppID, boolean>,
+
+	restoring: {
+		wallpapers: false,
+		finder: false,
+		vscode: false,
+		calculator: false,
+		// safari: false,
+		appstore: false,
+		calendar: false,
+		// 'system-preferences': false,
+
+		'orpheus-twitter': false,
+		'view-source': false,
+
+		vercel: false,
+	} as Record<AppID, boolean>,
 });

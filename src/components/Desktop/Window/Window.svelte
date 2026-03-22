@@ -2,7 +2,6 @@
 	import {
 		bounds,
 		BoundsFrom,
-		Compartment,
 		ControlFrom,
 		controls,
 		disabled,
@@ -43,8 +42,6 @@
 		y: (100 + randY) / 2,
 	};
 
-	const disabledComp = Compartment.of(() => disabled(!dragging_enabled));
-
 	$effect(() => {
 		apps.active_z_index;
 
@@ -70,7 +67,27 @@
 		};
 	}
 
+	function windowOpenTransition(
+		el: HTMLElement,
+		{ duration = preferences.reduced_motion ? 0 : 260 }: SvelteTransitionConfig = {},
+	): SvelteTransitionReturnType {
+		const existingTransform = getComputedStyle(el).transform;
+		const baseTransform = existingTransform === 'none' ? '' : `${existingTransform} `;
+		const isRestoringFromMinimized = apps.restoring[app_id];
+		const startScale = isRestoringFromMinimized ? 0.88 : 0.94;
+		const startYOffset = isRestoringFromMinimized ? 18 : 0;
+
+		return {
+			duration,
+			easing: sineInOut,
+			css: (t) =>
+				`opacity: ${t}; transform: ${baseTransform}translateY(${(1 - t) * startYOffset}px) scale(${startScale + t * (1 - startScale)})`,
+		};
+	}
+
 	async function maximizeApp() {
+		if (!windowEl) return;
+
 		if (!preferences.reduced_motion) {
 			windowEl.style.transition = 'height 0.3s ease, width 0.3s ease, transform 0.3s ease';
 		}
@@ -78,18 +95,19 @@
 		if (!is_maximized) {
 			dragging_enabled = false;
 
-			minimized_transform = windowEl.style.transform;
-			windowEl.style.transform = `translate(0px, 0px)`;
+			minimized_transform = windowEl.style.transform || '';
+			windowEl.style.transform = `translate(0px, 27.2px)`;
 
-			windowEl.style.width = `100%`;
-			// windowEl.style.height = 'calc(100vh - 1.7rem - 5.25rem)';
+			windowEl.style.width = `100vw`;
 			windowEl.style.height = 'calc(100vh - 1.7rem)';
+			windowEl.style.borderRadius = '0';
 		} else {
 			dragging_enabled = true;
 			windowEl.style.transform = minimized_transform;
 
 			windowEl.style.width = `${+width / remModifier}rem`;
 			windowEl.style.height = `${+height / remModifier}rem`;
+			windowEl.style.borderRadius = '0.75rem';
 		}
 
 		is_maximized = !is_maximized;
@@ -101,9 +119,42 @@
 		if (!preferences.reduced_motion) windowEl.style.transition = '';
 	}
 
+	async function minimizeApp() {
+		if (!windowEl) return;
+
+		const duration = preferences.reduced_motion ? 0 : 220;
+		const existingTransform = windowEl.style.transform || getComputedStyle(windowEl).transform;
+
+		if (!preferences.reduced_motion) {
+			windowEl.style.transition = 'opacity 0.22s ease, transform 0.22s ease';
+			windowEl.style.opacity = '0';
+			windowEl.style.transform = `${existingTransform} scale(0.96)`;
+		}
+
+		await sleep(duration);
+
+		apps.minimized[app_id] = true;
+		apps.fullscreen[app_id] = false;
+		apps.restoring[app_id] = false;
+		is_maximized = false;
+		dragging_enabled = true;
+
+		windowEl.style.opacity = '';
+		windowEl.style.transition = '';
+		windowEl.style.width = `${+width / remModifier}rem`;
+		windowEl.style.height = `${+height / remModifier}rem`;
+		windowEl.style.borderRadius = '0.75rem';
+	}
+
 	function closeApp() {
 		apps.open[app_id] = false;
 		apps.fullscreen[app_id] = false;
+		apps.minimized[app_id] = false;
+		apps.restoring[app_id] = false;
+	}
+
+	function onWindowIntroEnd() {
+		if (apps.restoring[app_id]) apps.restoring[app_id] = false;
 	}
 
 	function onAppDragStart() {
@@ -132,16 +183,23 @@
 	{@attach draggable(() => [
 		controls({ allow: ControlFrom.selector('.app-window-drag-handle') }),
 		bounds(BoundsFrom.viewport({ bottom: -6000, top: 27.2, left: -6000, right: -6000 })),
-		disabledComp,
+		disabled(!dragging_enabled),
 		position({ default: defaultPosition }),
 		events({ onDragStart: onAppDragStart, onDragEnd: onAppDragEnd }),
 	])}
 	onclick={focusApp}
 	onkeydown={() => {}}
+	onintroend={onWindowIntroEnd}
+	in:windowOpenTransition
 	out:windowCloseTransition
 >
 	<div class="tl-container {app_id}" use:elevation={'window-traffic-lights'}>
-		<TrafficLights {app_id} on_maximize_click={maximizeApp} on_close_app={closeApp} />
+		<TrafficLights
+			{app_id}
+			on_maximize_click={maximizeApp}
+			on_minimize_click={minimizeApp}
+			on_close_app={closeApp}
+		/>
 	</div>
 
 	<AppNexus {app_id} is_being_dragged={apps.is_being_dragged} />

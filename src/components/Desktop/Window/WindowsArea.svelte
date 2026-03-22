@@ -32,7 +32,7 @@
 
 <section id="windows-area">
 	{#each Object.keys(apps_config) as app_id}
-		{#if apps.open[app_id] && apps_config[app_id].should_open_window}
+		{#if apps.open[app_id] && !apps.minimized[app_id] && apps_config[app_id].should_open_window}
 			{#await import('./Window.svelte') then { default: Window }}
 				<Window {app_id} />
 			{/await}

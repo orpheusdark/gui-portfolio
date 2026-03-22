@@ -110,8 +110,11 @@
 
 		// For the bounce animation
 		const isAppAlreadyOpen = apps.open[app_id];
+		const wasMinimized = apps.minimized[app_id];
 
 		apps.open[app_id] = true;
+		apps.minimized[app_id] = false;
+		apps.restoring[app_id] = wasMinimized;
 		apps.active = app_id;
 
 		if (isAppAlreadyOpen) return;
