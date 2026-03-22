@@ -17,6 +17,16 @@
 		{ name: 'Hindi', level: 'Native' },
 	];
 
+	const social_links = [
+		{ label: 'LinkedIn', url: 'https://www.linkedin.com/in/orpheusdark/', domain: 'linkedin.com' },
+		{ label: 'GitHub', url: 'https://github.com/orpheusdark', domain: 'github.com' },
+		{ label: 'LeetCode', url: 'https://leetcode.com/u/nirantchavda/', domain: 'leetcode.com' },
+		{ label: 'Unstop', url: 'https://unstop.com/u/nirancha9563', domain: 'unstop.com' },
+		{ label: 'CodeChef', url: 'https://www.codechef.com/users/orpheusdark', domain: 'codechef.com' },
+		{ label: 'CodeForces', url: 'https://codeforces.com/profile/orpheusdark', domain: 'codeforces.com' },
+		{ label: 'dev.to', url: 'https://dev.to/orpheusdark', domain: 'dev.to' },
+	];
+
 	function external(node: HTMLAnchorElement) {
 		node.rel = 'noopener noreferrer';
 		node.target = '_blank';
@@ -36,13 +46,16 @@
 
 			<hr />
 
-			<a href="https://www.linkedin.com/in/orpheusdark/" use:external>LinkedIn</a>
-			<a href="https://github.com/orpheusdark" use:external>GitHub</a>
-			<a href="https://leetcode.com/u/nirantchavda/" use:external>LeetCode</a>
-			<a href="https://unstop.com/u/nirancha9563" use:external>Unstop</a>
-			<a href="https://www.codechef.com/users/orpheusdark" use:external>CodeChef</a>
-			<a href="https://codeforces.com/profile/orpheusdark" use:external>CodeForces</a>
-			<a href="https://dev.to/orpheusdark" use:external>dev.to</a>
+			{#each social_links as link}
+				<a href={link.url} use:external>
+					<img
+						class="link-logo"
+						src={`https://www.google.com/s2/favicons?domain=${link.domain}&sz=64`}
+						alt={`${link.label} logo`}
+					/>
+					<span>{link.label}</span>
+				</a>
+			{/each}
 		</nav>
 	</aside>
 
@@ -202,6 +215,13 @@
 					background-color: hsla(var(--system-color-dark-hsl), 0.2);
 				}
 			}
+
+				.link-logo {
+					width: 1.05rem;
+					height: 1.05rem;
+					border-radius: 0.2rem;
+					flex-shrink: 0;
+				}
 		}
 	}
 
