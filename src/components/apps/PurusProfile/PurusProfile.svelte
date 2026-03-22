@@ -38,6 +38,10 @@
 
 			<a href="https://www.linkedin.com/in/orpheusdark/" use:external>LinkedIn</a>
 			<a href="https://github.com/orpheusdark" use:external>GitHub</a>
+			<a href="https://leetcode.com/u/nirantchavda/" use:external>LeetCode</a>
+			<a href="https://unstop.com/u/nirancha9563" use:external>Unstop</a>
+			<a href="https://www.codechef.com/users/orpheusdark" use:external>CodeChef</a>
+			<a href="https://codeforces.com/profile/orpheusdark" use:external>CodeForces</a>
 			<a href="https://dev.to/orpheusdark" use:external>dev.to</a>
 		</nav>
 	</aside>
