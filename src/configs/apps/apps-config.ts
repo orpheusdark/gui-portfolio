@@ -51,7 +51,7 @@ const systemPreferences = create_app_config({
 	resizable: true,
 });
 
-const purusTwitter = create_app_config({
+const orpheusTwitter = create_app_config({
 	title: `About the Developer`,
 	resizable: true,
 
@@ -66,7 +66,7 @@ const viewSource = create_app_config({
 	resizable: true,
 
 	should_open_window: false,
-	external_action: () => window.open('https://github.com/puruvj/macos-web', '_blank'),
+	external_action: () => window.open('https://github.com/orpheusdark/gui-portfolio', '_blank'),
 });
 
 const vercel = create_app_config({
@@ -75,7 +75,7 @@ const vercel = create_app_config({
 
 	should_open_window: false,
 	external_action: () =>
-		window.open('https://vercel.com/?utm_source=purus-projects&utm_campaign=oss', '_blank'),
+		window.open('https://vercel.com/?utm_source=orpheus-projects&utm_campaign=oss', '_blank'),
 
 	dock_breaks_before: true,
 });
@@ -96,7 +96,7 @@ export const apps_config = {
 
 	// 'system-preferences': systemPreferences,
 
-	'purus-twitter': purusTwitter,
+	'orpheus-twitter': orpheusTwitter,
 	'view-source': viewSource,
 
 	vercel,
