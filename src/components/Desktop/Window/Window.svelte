@@ -57,6 +57,8 @@
 
 	const MIN_WIDTH = 288;
 	const MIN_HEIGHT = 192;
+	const TOP_BAR_HEIGHT_REM = 1.8;
+	const DOCK_HEIGHT_REM = 5.2;
 
 	let is_resizing = $state(false);
 	let resize_direction = $state<ResizeDirection>();
@@ -280,11 +282,11 @@
 			syncRememberedSize();
 
 			minimized_transform = windowEl.style.transform || '';
-			windowEl.style.transform = `translate(0px, 27.2px)`;
+			windowEl.style.transform = `translate(0px, ${TOP_BAR_HEIGHT_REM}rem)`;
 
 			windowEl.style.width = `100vw`;
-			windowEl.style.height = 'calc(100vh - 1.7rem)';
-			windowEl.style.borderRadius = '0';
+			windowEl.style.height = `calc(100vh - ${TOP_BAR_HEIGHT_REM}rem - ${DOCK_HEIGHT_REM}rem)`;
+			windowEl.style.borderRadius = '0.75rem';
 		} else {
 			dragging_enabled = true;
 			windowEl.style.transform = minimized_transform;
@@ -296,7 +298,8 @@
 
 		is_maximized = !is_maximized;
 
-		apps.fullscreen[app_id] = is_maximized;
+		// Keep dock visible when a window is maximized (zoomed) rather than true fullscreen.
+		apps.fullscreen[app_id] = false;
 
 		await sleep(300);
 
