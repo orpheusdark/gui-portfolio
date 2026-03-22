@@ -2,6 +2,7 @@
 	import { elevation } from '🍎/actions';
 	import { context_menu_config } from '🍎/configs/menu/context.menu.config.ts';
 	import { fade_out } from '🍎/helpers/fade.ts';
+	import { apps } from '🍎/state/apps.svelte.ts';
 	import { preferences } from '🍎/state/preferences.svelte.ts';
 
 	const { target_element }: { target_element: HTMLElement } = $props();
@@ -29,6 +30,17 @@
 	function hideMenu() {
 		is_menu_visible = false;
 	}
+
+	function handleMenuAction(item_id: string) {
+		if (item_id === 'change-desktop-bg') {
+			apps.open.wallpapers = true;
+			apps.minimized.wallpapers = false;
+			apps.restoring.wallpapers = false;
+			apps.active = 'wallpapers';
+		}
+
+		hideMenu();
+	}
 </script>
 
 <svelte:body
@@ -47,8 +59,8 @@
 		out:fade_out
 		use:elevation={'context-menu'}
 	>
-		{#each Object.values(context_menu_config.default) as contents}
-			<button class="menu-item">{contents.title}</button>
+		{#each Object.entries(context_menu_config.default) as [item_id, contents]}
+			<button class="menu-item" onclick={() => handleMenuAction(item_id)}>{contents.title}</button>
 
 			{#if contents.breakAfter}
 				<div class="divider"></div>

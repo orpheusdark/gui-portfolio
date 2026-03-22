@@ -30,7 +30,7 @@
 
 	let windowEl = $state<HTMLElement>();
 
-	const { height, width } = apps_config[app_id];
+	const { height, width, resizable } = apps_config[app_id];
 
 	const remModifier = +height * 1.2 >= window.innerHeight ? 24 : 16;
 
@@ -41,6 +41,9 @@
 		x: (document.body.clientWidth / 2 + randX) / 2,
 		y: (100 + randY) / 2,
 	};
+
+	let remembered_width = $state<string>();
+	let remembered_height = $state<string>();
 
 	$effect(() => {
 		apps.active_z_index;
@@ -95,6 +98,10 @@
 		if (!is_maximized) {
 			dragging_enabled = false;
 
+			const computed = getComputedStyle(windowEl);
+			remembered_width = computed.width;
+			remembered_height = computed.height;
+
 			minimized_transform = windowEl.style.transform || '';
 			windowEl.style.transform = `translate(0px, 27.2px)`;
 
@@ -105,8 +112,8 @@
 			dragging_enabled = true;
 			windowEl.style.transform = minimized_transform;
 
-			windowEl.style.width = `${+width / remModifier}rem`;
-			windowEl.style.height = `${+height / remModifier}rem`;
+			windowEl.style.width = remembered_width || `${+width / remModifier}rem`;
+			windowEl.style.height = remembered_height || `${+height / remModifier}rem`;
 			windowEl.style.borderRadius = '0.75rem';
 		}
 
@@ -141,8 +148,8 @@
 
 		windowEl.style.opacity = '';
 		windowEl.style.transition = '';
-		windowEl.style.width = `${+width / remModifier}rem`;
-		windowEl.style.height = `${+height / remModifier}rem`;
+		windowEl.style.width = remembered_width || `${+width / remModifier}rem`;
+		windowEl.style.height = remembered_height || `${+height / remModifier}rem`;
 		windowEl.style.borderRadius = '0.75rem';
 	}
 
@@ -177,6 +184,9 @@
 	class:active={apps.active === app_id}
 	style:width="{+width / remModifier}rem"
 	style:height="{+height / remModifier}rem"
+	style:resize={resizable && !is_maximized ? 'both' : 'none'}
+	style:min-width="18rem"
+	style:min-height="12rem"
 	style:z-index={apps.z_indices[app_id]}
 	tabindex="-1"
 	bind:this={windowEl}
@@ -223,6 +233,7 @@
 		box-shadow: var(--elevated-shadow);
 
 		cursor: var(--system-cursor-default), auto;
+		overflow: auto;
 
 		&.active {
 			/* // --elevated-shadow: 0px 6.7px 12px rgba(0, 0, 0, 0.218), 0px 22.3px 40.2px rgba(0, 0, 0, 0.322),
