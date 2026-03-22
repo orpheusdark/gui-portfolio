@@ -8,7 +8,15 @@ import browserslist from 'browserslist';
 
 import { prefetch } from './prefetch-plugin';
 
+declare const process: {
+	env: Record<string, string | undefined>;
+};
+
+const repo_name = process.env.GITHUB_REPOSITORY?.split('/')[1];
+const base = process.env.GITHUB_ACTIONS === 'true' && repo_name ? `/${repo_name}/` : '/';
+
 export default defineConfig({
+	base,
 	plugins: [
 		svelte(),
 		prefetch(),
@@ -23,10 +31,11 @@ export default defineConfig({
 				'**/*.mp3',
 			],
 			manifest: {
-				name: 'Mac OS Monterey Svelte Web',
-				short_name: 'macOS Svelte',
+				name: 'NirantOS - Developer OS',
+				short_name: 'NirantOS',
 				theme_color: '#ffffff',
-				description: 'Mac OS Monterey Web written in Svelte',
+				description:
+					'Cybersecurity-focused developer OS portfolio of Nirant Chavda, Computer Engineering Student.',
 				icons: [
 					{
 						src: 'app-icons/finder/128.png',
