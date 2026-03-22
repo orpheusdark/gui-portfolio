@@ -77,11 +77,17 @@
 	let sidebar_resize_start_x = $state(0);
 	let sidebar_resize_start_width = $state(0);
 
+	const hide_file_chrome = $derived(
+		app_id === 'appstore' || app_id === 'vscode' || app_id === 'orpheus-twitter',
+	);
+
 	const is_chrome_minimal = $derived(
 		app_id === 'finder' || app_id === 'wallpapers' || app_id === 'calculator',
 	);
-	const show_toolbar = $derived(!is_chrome_minimal);
-	const show_sidebar = $derived(!is_chrome_minimal && (app_id === 'appstore' || app_id === 'vscode'));
+	const show_toolbar = $derived(!is_chrome_minimal && !hide_file_chrome);
+	const show_sidebar = $derived(
+		!is_chrome_minimal && !hide_file_chrome && (app_id === 'appstore' || app_id === 'vscode'),
+	);
 
 	$effect(() => {
 		apps.active_z_index;
@@ -343,6 +349,10 @@
 		apps.restoring[app_id] = false;
 	}
 
+	function openTerminalLink() {
+		window.open('https://orpheusdark.github.io', '_blank');
+	}
+
 	function onWindowIntroEnd() {
 		if (apps.restoring[app_id]) apps.restoring[app_id] = false;
 	}
@@ -415,7 +425,7 @@
 				>
 					Sidebar
 				</button>
-				<button type="button" class="toolbar-icon">View</button>
+				<button type="button" class="toolbar-icon" onclick={openTerminalLink}>Terminal</button>
 				<button type="button" class="toolbar-icon">Sort</button>
 			{/if}
 		</div>

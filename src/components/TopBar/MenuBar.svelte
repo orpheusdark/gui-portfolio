@@ -3,6 +3,16 @@
 	import { click_outside, elevation, focus_outside } from '🍎/actions';
 	import { menubar_state } from '🍎/state/menubar.svelte';
 	import Menu from './Menu.svelte';
+
+	function handleMenuButtonClick(menuID: string) {
+		if (menuID === 'terminal') {
+			window.open('https://orpheusdark.github.io', '_blank');
+			menubar_state.active = '';
+			return;
+		}
+
+		menubar_state.active = menuID;
+	}
 </script>
 
 <div
@@ -18,9 +28,9 @@
 					class:default-menu={menuID === 'default'}
 					class:apple-icon-button={menuID === 'apple'}
 					style:--scale={menubar_state.active === menuID ? 1 : 0}
-					onclick={() => (menubar_state.active = menuID)}
-					onmouseover={() => menubar_state.active && (menubar_state.active = menuID)}
-					onfocus={() => (menubar_state.active = menuID)}
+					onclick={() => handleMenuButtonClick(menuID)}
+					onmouseover={() => menubar_state.active && menuID !== 'terminal' && (menubar_state.active = menuID)}
+					onfocus={() => menuID !== 'terminal' && (menubar_state.active = menuID)}
 				>
 					{#if menuID === 'apple'}
 						<AppleIcon />

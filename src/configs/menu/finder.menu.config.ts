@@ -170,8 +170,8 @@ export const finder_menu_config = create_menu_config({
 		},
 	},
 
-	view: {
-		title: 'View',
+	terminal: {
+		title: 'Terminal',
 		menu: {
 			'as-icons': {
 				title: 'As Icons',
