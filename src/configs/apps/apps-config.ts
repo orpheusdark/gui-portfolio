@@ -36,9 +36,6 @@ const vscode = create_app_config({
 const finder = create_app_config({
 	title: 'Finder',
 	resizable: true,
-
-	// dockBreaksBefore: true,
-	should_open_window: false,
 });
 
 const safari = create_app_config({
