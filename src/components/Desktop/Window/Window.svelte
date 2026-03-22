@@ -78,7 +78,10 @@
 	let sidebar_resize_start_width = $state(0);
 
 	const hide_file_chrome = $derived(
-		app_id === 'appstore' || app_id === 'vscode' || app_id === 'orpheus-twitter',
+		app_id === 'appstore' ||
+			app_id === 'vscode' ||
+			app_id === 'orpheus-twitter' ||
+			app_id === 'calendar',
 	);
 
 	const is_chrome_minimal = $derived(
