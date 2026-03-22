@@ -77,8 +77,11 @@
 	let sidebar_resize_start_x = $state(0);
 	let sidebar_resize_start_width = $state(0);
 
-	const show_toolbar = $derived(app_id !== 'calculator');
-	const show_sidebar = $derived(app_id === 'finder' || app_id === 'wallpapers');
+	const is_chrome_minimal = $derived(
+		app_id === 'finder' || app_id === 'wallpapers' || app_id === 'calculator',
+	);
+	const show_toolbar = $derived(!is_chrome_minimal);
+	const show_sidebar = $derived(!is_chrome_minimal && (app_id === 'appstore' || app_id === 'vscode'));
 
 	$effect(() => {
 		apps.active_z_index;

@@ -26,7 +26,7 @@ const calendar = create_app_config({
 });
 
 const vscode = create_app_config({
-	title: 'VSCode',
+	title: 'Projects',
 	resizable: true,
 
 	height: 600,
@@ -34,7 +34,7 @@ const vscode = create_app_config({
 });
 
 const finder = create_app_config({
-	title: 'Finder',
+	title: 'Connect Me',
 	resizable: true,
 });
 
@@ -78,7 +78,7 @@ const vercel = create_app_config({
 });
 
 const appstore = create_app_config({
-	title: 'App Store',
+	title: 'Certifications',
 	resizable: true,
 });
 

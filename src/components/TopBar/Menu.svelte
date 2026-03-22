@@ -1,12 +1,63 @@
 <script lang="ts">
+	import { apps } from '🍎/state/apps.svelte.ts';
+	import { menubar_state } from '🍎/state/menubar.svelte.ts';
 	import { preferences } from '🍎/state/preferences.svelte.ts';
 
 	const { menu }: { menu: any } = $props();
+
+	function openApp(app_id: keyof typeof apps.open) {
+		apps.open[app_id] = true;
+		apps.minimized[app_id] = false;
+		apps.restoring[app_id] = false;
+		apps.active = app_id;
+	}
+
+	function closeWebsite() {
+		window.open('', '_self');
+		window.close();
+
+		if (!window.closed) {
+			window.location.replace('about:blank');
+		}
+	}
+
+	function reloadWebsite() {
+		window.location.reload();
+	}
+
+	function handleMenuAction(item_id: string, disabled?: boolean) {
+		if (disabled) return;
+
+		switch (item_id) {
+			case 'about-this-mac':
+				window.location.href = 'https://github.com/orpheusdark/gui-portfolio';
+				break;
+			case 'app-store':
+				openApp('appstore');
+				break;
+			case 'restart':
+			case 'lock-screen':
+			case 'logout':
+				reloadWebsite();
+				break;
+			case 'shutdown':
+				closeWebsite();
+				break;
+			case 'about-finder':
+				openApp('orpheus-twitter');
+				break;
+			case 'macos-help':
+				openApp('finder');
+				break;
+		}
+
+		menubar_state.active = '';
+	}
 </script>
 
 <section class="container" class:dark={preferences.theme.scheme === 'dark'}>
-	{#each Object.entries(menu) as Array<[any, any]> as [_, val]}
-		<button class="menu-item" disabled={val.disabled}>{val.title}</button>
+	{#each Object.entries(menu) as Array<[any, any]> as [item_id, val]}
+		<button class="menu-item" disabled={val.disabled} onclick={() => handleMenuAction(item_id, val.disabled)}>{val.title}</button>
 		{#if val.breakAfter}
 			<div class="divider"></div>
 		{/if}

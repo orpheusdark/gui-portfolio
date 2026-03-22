@@ -2,10 +2,10 @@ import { create_menu_config } from '🍎/helpers/create-menu-config';
 
 export const finder_menu_config = create_menu_config({
 	default: {
-		title: 'Finder',
+		title: 'Connect Me',
 		menu: {
 			'about-finder': {
-				title: 'About Finder',
+				title: 'About me',
 				breakAfter: true,
 			},
 			preferences: {
@@ -379,7 +379,7 @@ export const finder_menu_config = create_menu_config({
 				breakAfter: true,
 			},
 			'macos-help': {
-				title: 'macOS Help',
+				title: 'Contact Me',
 			},
 		},
 	},
