@@ -6,6 +6,7 @@
 	type LinkItem = {
 		label: string;
 		url: string;
+		domain: string;
 	};
 
 	type Certification = {
@@ -15,13 +16,25 @@
 	};
 
 	const contact_links: LinkItem[] = [
-		{ label: 'LinkedIn', url: 'https://www.linkedin.com/in/orpheusdark/' },
-		{ label: 'GitHub', url: 'https://github.com/orpheusdark' },
-		{ label: 'LeetCode', url: 'https://leetcode.com/u/nirantchavda/' },
-		{ label: 'Unstop', url: 'https://unstop.com/u/nirancha9563' },
-		{ label: 'CodeChef', url: 'https://www.codechef.com/users/orpheusdark' },
-		{ label: 'CodeForces', url: 'https://codeforces.com/profile/orpheusdark' },
-		{ label: 'dev.io', url: 'https://dev.to/orpheusdark' },
+		{
+			label: 'LinkedIn',
+			url: 'https://www.linkedin.com/in/orpheusdark/',
+			domain: 'linkedin.com',
+		},
+		{ label: 'GitHub', url: 'https://github.com/orpheusdark', domain: 'github.com' },
+		{ label: 'LeetCode', url: 'https://leetcode.com/u/nirantchavda/', domain: 'leetcode.com' },
+		{ label: 'Unstop', url: 'https://unstop.com/u/nirancha9563', domain: 'unstop.com' },
+		{
+			label: 'CodeChef',
+			url: 'https://www.codechef.com/users/orpheusdark',
+			domain: 'codechef.com',
+		},
+		{
+			label: 'CodeForces',
+			url: 'https://codeforces.com/profile/orpheusdark',
+			domain: 'codeforces.com',
+		},
+		{ label: 'dev.io', url: 'https://dev.to/orpheusdark', domain: 'dev.to' },
 	];
 
 	const certifications: Certification[] = [
@@ -45,7 +58,16 @@
 			<ul>
 				{#each contact_links as link}
 					<li>
-						<a href={link.url} target="_blank" rel="noopener noreferrer">{link.label}</a>
+						<a href={link.url} target="_blank" rel="noopener noreferrer">
+							<span class="link-meta">
+								<img
+									class="logo"
+									src={`https://www.google.com/s2/favicons?domain=${link.domain}&sz=64`}
+									alt={`${link.label} logo`}
+								/>
+								<span>{link.label}</span>
+							</span>
+						</a>
 					</li>
 				{/each}
 			</ul>
@@ -130,11 +152,25 @@
 		}
 
 		a {
-			display: block;
+			display: flex;
+			align-items: center;
 			padding: 0.6rem 0.7rem;
 			text-decoration: none;
 			color: hsl(211deg 84% 37%);
 			font-weight: 500;
+		}
+
+		.link-meta {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.55rem;
+		}
+
+		.logo {
+			width: 1.05rem;
+			height: 1.05rem;
+			border-radius: 0.2rem;
+			flex-shrink: 0;
 		}
 	}
 
