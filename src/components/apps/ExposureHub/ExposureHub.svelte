@@ -244,6 +244,8 @@
 	.exposure-hub-container {
 		display: grid;
 		grid-template-rows: 2.8rem 1fr;
+		height: 100%;
+		min-height: 0;
 		background: linear-gradient(
 			125deg,
 			hsl(208deg 38% 95%),
@@ -287,6 +289,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.75rem;
+		min-height: 0;
 	}
 
 	.timeline-controls {
@@ -393,6 +396,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.75rem;
+		min-height: 0;
 	}
 
 	.hero {

@@ -103,6 +103,9 @@
 	const show_sidebar = $derived(
 		!is_chrome_minimal && !hide_file_chrome && (app_id === 'appstore' || app_id === 'vscode'),
 	);
+	const hide_terminal_and_sort_actions = $derived(
+		app_id === 'pro-network' || app_id === 'exposure-hub',
+	);
 
 	$effect(() => {
 		apps.active_z_index;
@@ -440,8 +443,10 @@
 				>
 					Sidebar
 				</button>
-				<button type="button" class="toolbar-icon" onclick={openTerminalLink}>Terminal</button>
-				<button type="button" class="toolbar-icon">Sort</button>
+				{#if !hide_terminal_and_sort_actions}
+					<button type="button" class="toolbar-icon" onclick={openTerminalLink}>Terminal</button>
+					<button type="button" class="toolbar-icon">Sort</button>
+				{/if}
 			{/if}
 		</div>
 	</header>

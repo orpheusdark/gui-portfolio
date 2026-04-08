@@ -327,6 +327,8 @@
 	.pro-network-container {
 		display: grid;
 		grid-template-rows: 2.8rem 1fr;
+		height: 100%;
+		min-height: 0;
 
 		background: linear-gradient(
 			150deg,
@@ -355,6 +357,7 @@
 		flex-direction: column;
 		gap: 0.8rem;
 		padding: 0.9rem;
+		min-height: 0;
 	}
 
 	.panel {
