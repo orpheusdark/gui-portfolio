@@ -13,12 +13,16 @@ export type AppConfig = {
 
 	/** Break before this app */
 	dock_breaks_before?: boolean;
+
+	/** Whether this app should appear in the dock */
+	show_in_dock?: boolean;
 };
 
 export const create_app_config = (et: AppConfig) =>
 	({
 		should_open_window: true,
 		dock_breaks_before: false,
+		show_in_dock: true,
 
 		resizable: true,
 		expandable: false,

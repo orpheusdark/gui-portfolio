@@ -18,6 +18,8 @@ const calculator = create_app_config({
 
 	height: 250 * 1.414,
 	width: 250,
+
+	show_in_dock: false,
 });
 
 const calendar = create_app_config({
@@ -86,16 +88,16 @@ const proNetwork = create_app_config({
 	title: 'Pro Network',
 	resizable: true,
 
-	height: 680,
-	width: 980,
+	height: 640,
+	width: 920,
 });
 
 const exposureHub = create_app_config({
 	title: 'Exposure Hub',
 	resizable: true,
 
-	height: 680,
-	width: 1024,
+	height: 640,
+	width: 940,
 });
 
 export const apps_config = {

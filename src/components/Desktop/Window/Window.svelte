@@ -33,13 +33,28 @@
 	const { height, width, resizable, title } = apps_config[app_id];
 
 	const remModifier = +height * 1.2 >= window.innerHeight ? 24 : 16;
+	const TOP_BAR_HEIGHT_REM = 1.8;
+	const DOCK_HEIGHT_REM = 5.2;
+	const TOP_BAR_HEIGHT_PX = TOP_BAR_HEIGHT_REM * 16;
+	const DOCK_HEIGHT_PX = DOCK_HEIGHT_REM * 16;
+	const WINDOW_EDGE_PADDING = 8;
+
+	const default_width_px = Number(width) || 600;
+	const default_height_px = Number(height) || 500;
 
 	const randX = rand_int(-600, 600);
 	const randY = rand_int(-100, 100);
+	const base_x = (window.innerWidth - default_width_px) / 2;
+	const base_y = (window.innerHeight - DOCK_HEIGHT_PX + TOP_BAR_HEIGHT_PX - default_height_px) / 2;
+	const max_x = Math.max(WINDOW_EDGE_PADDING, window.innerWidth - default_width_px - WINDOW_EDGE_PADDING);
+	const max_y = Math.max(
+		TOP_BAR_HEIGHT_PX,
+		window.innerHeight - DOCK_HEIGHT_PX - default_height_px - WINDOW_EDGE_PADDING,
+	);
 
 	let defaultPosition = {
-		x: (document.body.clientWidth / 2 + randX) / 2,
-		y: (100 + randY) / 2,
+		x: clamp(base_x + randX / 6, WINDOW_EDGE_PADDING, max_x),
+		y: clamp(base_y + randY / 6, TOP_BAR_HEIGHT_PX, max_y),
 	};
 
 	let remembered_width = $state<string>();
@@ -57,9 +72,6 @@
 
 	const MIN_WIDTH = 288;
 	const MIN_HEIGHT = 192;
-	const TOP_BAR_HEIGHT_REM = 1.8;
-	const DOCK_HEIGHT_REM = 5.2;
-
 	let is_resizing = $state(false);
 	let resize_direction = $state<ResizeDirection>();
 	let resize_start_x = $state(0);

@@ -60,7 +60,7 @@
 		onmouseleave={() => (dock_mouse_x = null)}
 	>
 		{#each Object.entries(apps_config) as [appID, config]}
-			{#if appID !== 'calculator'}
+			{#if config.show_in_dock !== false}
 				{#if config.dock_breaks_before}
 					<div class="divider" aria-hidden="true"></div>
 				{/if}
