@@ -243,7 +243,7 @@
 <style>
 	.exposure-hub-container {
 		display: grid;
-		grid-template-rows: 2.8rem 1fr;
+		grid-template-rows: auto 1fr;
 		height: 100%;
 		min-height: 0;
 		background: linear-gradient(

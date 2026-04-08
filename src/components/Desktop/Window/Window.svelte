@@ -92,6 +92,8 @@
 	const hide_file_chrome = $derived(
 		app_id === 'appstore' ||
 			app_id === 'vscode' ||
+			app_id === 'pro-network' ||
+			app_id === 'exposure-hub' ||
 			app_id === 'orpheus-twitter' ||
 			app_id === 'calendar',
 	);
