@@ -82,6 +82,22 @@ const appstore = create_app_config({
 	resizable: true,
 });
 
+const proNetwork = create_app_config({
+	title: 'Pro Network',
+	resizable: true,
+
+	height: 680,
+	width: 980,
+});
+
+const exposureHub = create_app_config({
+	title: 'Exposure Hub',
+	resizable: true,
+
+	height: 680,
+	width: 1024,
+});
+
 export const apps_config = {
 	finder,
 	wallpapers,
@@ -89,6 +105,8 @@ export const apps_config = {
 	calendar,
 	vscode,
 	appstore,
+	'pro-network': proNetwork,
+	'exposure-hub': exposureHub,
 	// safari,
 
 	// 'system-preferences': systemPreferences,

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900" role="img" aria-label="CNSP 2025 certificate">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f1d3a"/>
+      <stop offset="100%" stop-color="#1f6f8b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="900" fill="url(#bg)"/>
+  <rect x="60" y="60" width="1280" height="780" rx="28" fill="none" stroke="#d8ecff" stroke-width="4"/>
+  <text x="700" y="200" text-anchor="middle" fill="#d8ecff" font-size="42" font-family="Segoe UI, Arial, sans-serif">Certificate Record</text>
+  <text x="700" y="300" text-anchor="middle" fill="#ffffff" font-size="58" font-family="Segoe UI, Arial, sans-serif" font-weight="700">CNSP</text>
+  <text x="700" y="380" text-anchor="middle" fill="#dff2ff" font-size="34" font-family="Segoe UI, Arial, sans-serif">Issuer: The SecOps Group</text>
+  <text x="700" y="440" text-anchor="middle" fill="#dff2ff" font-size="34" font-family="Segoe UI, Arial, sans-serif">Year: 2025</text>
+  <text x="700" y="525" text-anchor="middle" fill="#cfe7f9" font-size="24" font-family="Segoe UI, Arial, sans-serif">Local portfolio archive by Nirant Chavda (NC)</text>
+  <text x="700" y="610" text-anchor="middle" fill="#ffffff" font-size="70" font-family="Segoe UI, Arial, sans-serif" font-weight="700">NC</text>
+</svg>

@@ -10,6 +10,8 @@ export const apps = $state({
 		calculator: false,
 		// safari: false,
 		appstore: false,
+		'pro-network': false,
+		'exposure-hub': false,
 		calendar: false,
 		// 'system-preferences': false,
 
@@ -34,6 +36,8 @@ export const apps = $state({
 		calculator: 0,
 		// safari: 0,
 		appstore: 0,
+		'pro-network': 0,
+		'exposure-hub': 0,
 		calendar: 0,
 		// 'system-preferences': 0,
 
@@ -52,6 +56,8 @@ export const apps = $state({
 		calculator: false,
 		// safari: false,
 		appstore: false,
+		'pro-network': false,
+		'exposure-hub': false,
 		calendar: false,
 		// 'system-preferences': false,
 
@@ -68,6 +74,8 @@ export const apps = $state({
 		calculator: false,
 		// safari: false,
 		appstore: false,
+		'pro-network': false,
+		'exposure-hub': false,
 		calendar: false,
 		// 'system-preferences': false,
 
@@ -84,6 +92,8 @@ export const apps = $state({
 		calculator: false,
 		// safari: false,
 		appstore: false,
+		'pro-network': false,
+		'exposure-hub': false,
 		calendar: false,
 		// 'system-preferences': false,
 

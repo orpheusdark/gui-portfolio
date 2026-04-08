@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900" role="img" aria-label="RIFT-26 hackathon validation">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a1a2e"/><stop offset="100%" stop-color="#005f73"/></linearGradient></defs>
+  <rect width="1400" height="900" fill="url(#bg)"/>
+  <rect x="60" y="60" width="1280" height="780" rx="28" fill="none" stroke="#def7ff" stroke-width="4"/>
+  <text x="700" y="220" text-anchor="middle" fill="#def7ff" font-size="42" font-family="Segoe UI, Arial, sans-serif">Cybersecurity Hackathon Validation</text>
+  <text x="700" y="330" text-anchor="middle" fill="#ffffff" font-size="58" font-family="Segoe UI, Arial, sans-serif" font-weight="700">RIFT-26 Fraud Intelligence Hackathon</text>
+  <text x="700" y="410" text-anchor="middle" fill="#e9fbff" font-size="32" font-family="Segoe UI, Arial, sans-serif">Participation and anti-fraud prototype contribution record</text>
+  <text x="700" y="500" text-anchor="middle" fill="#d5f2f8" font-size="24" font-family="Segoe UI, Arial, sans-serif">Archive maintained inside NirantOS portfolio</text>
+  <text x="700" y="610" text-anchor="middle" fill="#ffffff" font-size="70" font-family="Segoe UI, Arial, sans-serif" font-weight="700">NC</text>
+</svg>

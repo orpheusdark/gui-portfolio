@@ -30,6 +30,14 @@
 	{#await import('./OrpheusProfile/OrpheusProfile.svelte') then { default: OrpheusProfile }}
 		<OrpheusProfile />
 	{/await}
+{:else if app_id === 'pro-network'}
+	{#await import('./ProNetwork/ProNetwork.svelte') then { default: ProNetwork }}
+		<ProNetwork />
+	{/await}
+{:else if app_id === 'exposure-hub'}
+	{#await import('./ExposureHub/ExposureHub.svelte') then { default: ExposureHub }}
+		<ExposureHub />
+	{/await}
 {:else}
 	{#await import('./AppStore/AppStore.svelte') then { default: AppStore }}
 		<AppStore {app_id} />
