@@ -91,6 +91,13 @@
 		external_action: externalAction,
 	} = apps_config[app_id];
 
+	const iconSrcByAppID: Partial<Record<AppID, string>> = {
+		'pro-network': '/app-icons/pro-network/256.svg',
+		'exposure-hub': '/app-icons/exposure-hub/256.svg',
+	};
+
+	const iconSrc = $derived(iconSrcByAppID[app_id] ?? `/app-icons/${app_id}/256.webp`);
+
 	// Spring animation for the click animation
 	const appOpenIconBounceTransform = tweened(0, {
 		duration: 400,
@@ -149,7 +156,7 @@
 	<span style:transform="translate(0, {$appOpenIconBounceTransform}px)">
 		<img
 			bind:this={image_el}
-			src="/app-icons/{app_id}/256.webp"
+			src={iconSrc}
 			alt="{title} app"
 			style:width="{$width_px / 16}rem"
 			draggable="false"

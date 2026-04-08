@@ -60,11 +60,13 @@
 		onmouseleave={() => (dock_mouse_x = null)}
 	>
 		{#each Object.entries(apps_config) as [appID, config]}
-			{#if config.dock_breaks_before}
-				<div class="divider" aria-hidden="true"></div>
-			{/if}
+			{#if appID !== 'calculator'}
+				{#if config.dock_breaks_before}
+					<div class="divider" aria-hidden="true"></div>
+				{/if}
 
-			<DockItem mouse_x={dock_mouse_x} app_id={appID} needs_update={system_needs_update.value} />
+				<DockItem mouse_x={dock_mouse_x} app_id={appID} needs_update={system_needs_update.value} />
+			{/if}
 		{/each}
 	</div>
 </section>
