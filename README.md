@@ -8,25 +8,6 @@ This project recreates a macOS-inspired experience in the browser with draggable
 - Portfolio: [orpheusdark.github.io](https://orpheusdark.github.io)
 - Repository: [github.com/orpheusdark/gui-portfolio](https://github.com/orpheusdark/gui-portfolio)
 
-## Highlights
-
-- OS-style desktop UI with boot screen, dock, top bar, and app windows
-- Draggable/resizable app windows with smooth interactions
-- Portfolio sections presented as apps (Projects, Certifications, About, Connect)
-- Built-in utilities like Calculator, Calendar, and Wallpapers
-- PWA-ready configuration for a more app-like web experience
-- Responsive layout for desktop and mobile viewports
-
-## Main Apps Inside The Portfolio
-
-- `About the Developer`
-- `Projects`
-- `Certifications`
-- `Connect Me`
-- `Calculator`
-- `Calendar`
-- `Wallpapers`
-- `View Source`
 
 ## Tech Stack
 
@@ -38,45 +19,6 @@ This project recreates a macOS-inspired experience in the browser with draggable
 - date-fns
 - vite-plugin-pwa
 
-## Getting Started
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/orpheusdark/gui-portfolio.git
-cd gui-portfolio
-```
-
-### 2. Install dependencies
-
-```bash
-pnpm install
-```
-
-### 3. Run development server
-
-```bash
-pnpm dev
-```
-
-### 4. Build for production
-
-```bash
-pnpm build
-```
-
-### 5. Preview production build
-
-```bash
-pnpm serve
-```
-
-## Scripts
-
-- `pnpm dev` - start development server
-- `pnpm build` - create production build
-- `pnpm serve` - preview production build
-- `pnpm check` - run Svelte type checks
 
 ## Social Links
 
